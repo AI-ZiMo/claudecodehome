@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小猫AI-CC打网 - 推广返佣</title>
+    <link rel="icon" type="image/png" href="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/imagesimagesimage.png">
+    <link rel="shortcut icon" href="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/imagesimagesimage.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Promotion page specific styles */
+        .promotion-header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+        
+        .promotion-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .promotion-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+        
+        body.light-mode .promotion-subtitle {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .commission-rates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .rate-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rate-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .rate-level {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rate-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rate-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.light-mode .rate-description {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .scenario-section {
+            margin: 4rem 0;
+        }
+        
+        .scenario-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        body.light-mode .scenario-title {
+            color: #000;
+        }
+        
+        .scenario-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .scenario-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        body.light-mode .scenario-content {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .character-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .character {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+        }
+        
+        .character.level-1 {
+            border-color: rgba(245, 158, 11, 0.5);
+            background: rgba(245, 158, 11, 0.1);
+        }
+        
+        .character.level-2 {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .character.level-3 {
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .character-avatar {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .character-name {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        
+        body.light-mode .character-name {
+            color: #000;
+        }
+        
+        .character-role {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.25rem;
+        }
+        
+        body.light-mode .character-role {
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin: 0 0.5rem;
+        }
+        
+        .calculation-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .calculation-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .calculation-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .calculation-step {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.75rem;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        body.light-mode .calculation-step {
+            background: rgba(0, 0, 0, 0.05);
+            color: #000;
+        }
+        
+        .result-highlight {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .result-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        
+        .scenario-description {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .consumption-info {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .consumption-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        
+        /* Promotion Guide Styles */
+        .promotion-guide-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        body.light-mode .section-title {
+            color: #000;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        body.light-mode .section-subtitle {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .steps-guide {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .guide-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        body.light-mode .guide-step {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number-large {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .step-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        
+        body.light-mode .step-info h3 {
+            color: #000;
+        }
+        
+        .step-info p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+        
+        body.light-mode .step-info p {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .step-screenshot {
+            margin: 2rem 0;
+            text-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .guide-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .guide-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .step-description {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .step-description p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        body.light-mode .step-description p {
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .register-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .register-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .promotion-title {
+                font-size: 2.2rem;
+            }
+            
+            .character-flow {
+                flex-direction: column;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .commission-rates {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .step-number-large {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .guide-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/imagesimagesimage.png" alt="小猫AI" class="logo-img">
+                <span class="logo-text">小猫AI-CC打网</span>
+            </div>
+            <nav class="header-nav">
+                <button id="themeToggle" class="theme-toggle" title="切换日夜模式">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="index.html" class="nav-link">返回首页</a>
+                <a href="subscription.html" class="nav-link">订阅方案</a>
+                <a href="#contact" class="nav-link">联系我们</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Promotion Header -->
+            <section class="promotion-header">
+                <h1 class="promotion-title">💰 推广返佣计划</h1>
+                <p class="promotion-subtitle">邀请好友使用小猫AI，获得丰厚返佣奖励！分享越多，赚得越多！</p>
+                
+                <!-- Commission Rates -->
+                <div class="commission-rates">
+                    <div class="rate-card">
+                        <div class="rate-level">1级返佣</div>
+                        <div class="rate-value">20%</div>
+                        <div class="rate-description">直接推荐用户</div>
+                    </div>
+                    <div class="rate-card">
+                        <div class="rate-level">2级返佣</div>
+                        <div class="rate-value">40%</div>
+                        <div class="rate-description">二级推荐分润</div>
+                    </div>
+                    <div class="rate-card">
+                        <div class="rate-level">3级返佣</div>
+                        <div class="rate-value">30%</div>
+                        <div class="rate-description">三级推荐分润</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scenario 1 -->
+            <section class="scenario-section">
+                <h2 class="scenario-title">
+                    <div class="scenario-number">1</div>
+                    场景一：初次推广
+                </h2>
+                
+                <div class="scenario-content">
+                    <div class="scenario-description">
+                        <p><strong>🎯 场景描述：</strong>张三第一次发现小猫AI店铺并注册账号，后来推荐给好兄弟王五。</p>
+                    </div>
+                    
+                    <div class="character-flow">
+                        <div class="character level-1">
+                            <div class="character-avatar">👨‍💼</div>
+                            <div class="character-name">张三</div>
+                            <div class="character-role">推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character">
+                            <div class="character-avatar">🎯</div>
+                            <div class="character-name">推荐</div>
+                            <div class="character-role">邀请好友</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character">
+                            <div class="character-avatar">👨‍🔧</div>
+                            <div class="character-name">王五</div>
+                            <div class="character-role">被推荐人</div>
+                        </div>
+                    </div>
+                    
+                    <div class="consumption-info">
+                        <p>💳 王五消费金额：<span class="consumption-amount">100元</span></p>
+                    </div>
+                    
+                    <div class="calculation-box">
+                        <div class="calculation-title">
+                            💰 返佣计算
+                        </div>
+                        <div class="calculation-steps">
+                            <div class="calculation-step">张三1级返佣 = 100元 × 0.2 = 20元</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-highlight">
+                        <div class="result-text">🎉 张三获得：20元</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scenario 2 -->
+            <section class="scenario-section">
+                <h2 class="scenario-title">
+                    <div class="scenario-number">2</div>
+                    场景二：二级推广
+                </h2>
+                
+                <div class="scenario-content">
+                    <div class="scenario-description">
+                        <p><strong>🎯 场景描述：</strong>王五经常使用店铺后，推荐给妹妹小兰，形成二级推广关系。</p>
+                    </div>
+                    
+                    <div class="character-flow">
+                        <div class="character level-2">
+                            <div class="character-avatar">👨‍💼</div>
+                            <div class="character-name">张三</div>
+                            <div class="character-role">2级推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character level-1">
+                            <div class="character-avatar">👨‍🔧</div>
+                            <div class="character-name">王五</div>
+                            <div class="character-role">1级推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character">
+                            <div class="character-avatar">👩‍💼</div>
+                            <div class="character-name">小兰</div>
+                            <div class="character-role">被推荐人</div>
+                        </div>
+                    </div>
+                    
+                    <div class="consumption-info">
+                        <p>💳 小兰消费金额：<span class="consumption-amount">500元</span></p>
+                    </div>
+                    
+                    <div class="calculation-box">
+                        <div class="calculation-title">
+                            💰 返佣计算
+                        </div>
+                        <div class="calculation-steps">
+                            <div class="calculation-step">第一步：小兰→王五 1级返佣 = 500元 × 0.2 = 100元</div>
+                            <div class="calculation-step">第二步：王五→张三 2级返佣 = 100元 × 0.4 = 40元</div>
+                            <div class="calculation-step">王五实际获得 = 100元 - 40元 = 60元</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-highlight">
+                        <div class="result-text">🎉 王五获得：60元 | 张三获得：40元</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scenario 3 -->
+            <section class="scenario-section">
+                <h2 class="scenario-title">
+                    <div class="scenario-number">3</div>
+                    场景三：三级推广
+                </h2>
+                
+                <div class="scenario-content">
+                    <div class="scenario-description">
+                        <p><strong>🎯 场景描述：</strong>小兰推荐闺蜜小桃使用店铺，形成完整的三级推广链。</p>
+                    </div>
+                    
+                    <div class="character-flow">
+                        <div class="character level-3">
+                            <div class="character-avatar">👨‍💼</div>
+                            <div class="character-name">张三</div>
+                            <div class="character-role">3级推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character level-2">
+                            <div class="character-avatar">👨‍🔧</div>
+                            <div class="character-name">王五</div>
+                            <div class="character-role">2级推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character level-1">
+                            <div class="character-avatar">👩‍💼</div>
+                            <div class="character-name">小兰</div>
+                            <div class="character-role">1级推荐人</div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="character">
+                            <div class="character-avatar">👩‍🎨</div>
+                            <div class="character-name">小桃</div>
+                            <div class="character-role">被推荐人</div>
+                        </div>
+                    </div>
+                    
+                    <div class="consumption-info">
+                        <p>💳 小桃消费金额：<span class="consumption-amount">200元</span></p>
+                    </div>
+                    
+                    <div class="calculation-box">
+                        <div class="calculation-title">
+                            💰 返佣计算
+                        </div>
+                        <div class="calculation-steps">
+                            <div class="calculation-step">第一步：小桃→小兰 1级返佣 = 200元 × 0.2 = 40元</div>
+                            <div class="calculation-step">第二步：小兰→王五 2级返佣 = 40元 × 0.4 = 16元</div>
+                            <div class="calculation-step">小兰实际获得 = 40元 - 16元 = 24元</div>
+                            <div class="calculation-step">第三步：王五→张三 3级返佣 = 16元 × 0.3 = 4.8元</div>
+                            <div class="calculation-step">王五实际获得 = 16元 - 4.8元 = 11.2元</div>
+                            <div class="calculation-step">张三获得 = 4.8元</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-highlight">
+                        <div class="result-text">🎉 小兰获得：24元 | 王五获得：11.2元 | 张三获得：4.8元</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How to Promote Section -->
+            <section class="promotion-guide-section">
+                <h2 class="section-title">📋 推广步骤指南</h2>
+                <p class="section-subtitle">按照以下4个简单步骤，开始您的推广赚钱之旅！</p>
+                
+                <div class="steps-guide">
+                    <!-- Step 1: Register -->
+                    <div class="guide-step">
+                        <div class="step-header">
+                            <div class="step-number-large">1</div>
+                            <div class="step-info">
+                                <h3>注册推广账户</h3>
+                                <p>首先注册推广平台账户，获得专属推广权限</p>
+                            </div>
+                        </div>
+                        <div class="step-screenshot">
+                            <img src="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/imagesa6645a613f82c2e50d01fef08d69a0941a5f57f4501b28c0a911a4db5d02cf69.png" alt="注册推广账户" class="clickable-image guide-image">
+                        </div>
+                        <div class="step-description">
+                            <p>💡 <strong>操作说明：</strong>访问推广平台，填写基本信息完成注册，激活您的推广账户。</p>
+                            <p style="margin-top: 1rem;">
+                                <a href="https://claude.gpt4u.cc/user/authentication/register" target="_blank" class="register-link">
+                                    🚀 点击此处立即注册推广账户
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Get Link -->
+                    <div class="guide-step">
+                        <div class="step-header">
+                            <div class="step-number-large">2</div>
+                            <div class="step-info">
+                                <h3>复制推广链接</h3>
+                                <p>获取您的专属推广链接，准备分享给好友</p>
+                            </div>
+                        </div>
+                        <div class="step-screenshot">
+                            <img src="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/imagesbf850225a179a6ab0a9ed5471e2b7149aedad49346605cf3bcf5163fcde15fd7.png" alt="复制推广链接" class="clickable-image guide-image">
+                        </div>
+                        <div class="step-description">
+                            <p>💡 <strong>操作说明：</strong>登录账户后，在推广中心找到您的专属链接，一键复制分享给朋友。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Bind Payment -->
+                    <div class="guide-step">
+                        <div class="step-header">
+                            <div class="step-number-large">3</div>
+                            <div class="step-info">
+                                <h3>绑定收款账户</h3>
+                                <p>绑定支付宝或微信，方便后续提现操作</p>
+                            </div>
+                        </div>
+                        <div class="step-screenshot">
+                            <img src="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/images110bbfba8a886d4548c84c485fdbae47c0692fbd7e70a5b1557ea5262b4edb42.png" alt="绑定收款账户" class="clickable-image guide-image">
+                        </div>
+                        <div class="step-description">
+                            <p>💡 <strong>操作说明：</strong>在账户设置中绑定您的支付宝或微信账户，确保返佣能及时到账。</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Earn Commission -->
+                    <div class="guide-step">
+                        <div class="step-header">
+                            <div class="step-number-large">4</div>
+                            <div class="step-info">
+                                <h3>获得返佣收益</h3>
+                                <p>好友消费后，立即获得返佣硬币，可直接提现</p>
+                            </div>
+                        </div>
+                        <div class="step-screenshot">
+                            <img src="https://aibuilder.oss-cn-hangzhou.aliyuncs.com/images1e8074fc80c34990ce66a4c752ffb66e4b96ac84f344a269f499bced953dda49.png" alt="获得返佣收益" class="clickable-image guide-image">
+                        </div>
+                        <div class="step-description">
+                            <p>💡 <strong>操作说明：</strong>当好友通过您的链接消费后，系统会自动计算返佣，硬币余额实时更新。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <h2>🚀 开始您的推广之旅</h2>
+                <p class="cta-subtitle">立即开始推广小猫AI，享受持续的被动收入！</p>
+                
+                <div class="cta-buttons">
+                    <a href="https://claude.gpt4u.cc/user/authentication/register" target="_blank" class="btn-primary">获取专属推广链接</a>
+                    <a href="https://wiki.gpt4u.cc/2025/08/10/%e5%b0%8f%e7%8c%ab%e7%a4%be%e5%8c%ba%e4%b8%8e%e6%94%af%e6%8c%81/" target="_blank" class="btn-secondary">了解更多详情</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

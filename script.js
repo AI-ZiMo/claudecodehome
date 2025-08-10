@@ -209,22 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add loading animation for images
-    const images = document.querySelectorAll('img');
-    
-    images.forEach(img => {
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.3s';
-        
-        img.addEventListener('load', () => {
-            img.style.opacity = '1';
-        });
-        
-        // If image is already loaded
-        if (img.complete) {
-            img.style.opacity = '1';
-        }
-    });
+    // Images are now displayed directly without opacity animation for better visibility
     
     // Mobile menu toggle functionality
     if (window.innerWidth <= 1024) {
