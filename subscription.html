@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小猫AI-CC订阅 - Claude Code 教程</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=40&h=40&fit=crop&crop=face" alt="小猫AI" class="logo-img">
+                <span class="logo-text">小猫AI-CC订阅</span>
+            </div>
+            <nav class="header-nav">
+                <button id="themeToggle" class="theme-toggle" title="切换日夜模式">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="index.html" class="nav-link">返回首页</a>
+                <a href="https://wiki.gpt4u.cc/2025/08/10/%e5%b0%8f%e7%8c%ab%e7%a4%be%e5%8c%ba%e4%b8%8e%e6%94%af%e6%8c%81/" class="nav-link">联系我们</a>
+            </nav>
+        </header>
+
+        <div class="main-container">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <a href="index.html" class="back-btn">
+                        <span class="back-icon">←</span>
+                        返回首页
+                    </a>
+                </div>
+                <div class="nav-title">页面导航</div>
+                <nav class="sidebar-nav">
+                    <a href="#section1" class="nav-item active">1. 安装并运行</a>
+                    <a href="#section2" class="nav-item">2. 启动与登录</a>
+                    <a href="#section3" class="nav-item">3. 购买订阅</a>
+                    <a href="#section4" class="nav-item">4. 积分说明</a>
+                    <a href="#section5" class="nav-item">5. 推荐活动</a>
+                    <a href="#section6" class="nav-item">6. 升级CC</a>
+                    <a href="#section7" class="nav-item">7. 更多资源</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <div class="content-header">
+                    <h1>小猫AI-CC订阅订阅方案</h1>
+                    <p class="subtitle">比官方账户模式省60%以上，强烈推荐使用我们的改版CC+订阅账户方案，让您用更少的费用享受更好的AI编程服务</p>
+                </div>
+
+                <!-- Section 1: Installation -->
+                <section id="section1" class="content-section">
+                    <h2>1. 安装并运行</h2>
+                    
+                    <div class="warning-box">
+                        <div class="warning-icon">⚠️</div>
+                        <span>重要说明：改版会自动适配路径，主要解决线路稳定性问题，请放心使用。</span>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>1.1 系统要求</h3>
+                        <div class="requirements">
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>操作系统：macOS 10.15+ / Ubuntu 20.04+ / Debian 10+ / Windows</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>硬件：≥ 2 GB RAM</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>软件：Node.js 18+、Git 2.23+（可选）、GitHub/GitLab CLI（可选）</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>网络：无需翻墙</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3>1.2 安装CC（改编版）</h3>
+                        <div class="code-block">
+                            <code>npm install -g https://gaccode.com/claudecode/install --registry=https://registry.npmmirror.com</code>
+                        </div>
+                        <p class="code-description">-g 表示全局安装，可在任意目录调用 claude</p>
+                        
+                        <div class="info-box">
+                            <p><strong>如果已经安装过原版的，可执行如下卸载：</strong></p>
+                            <div class="code-block">
+                                <code>npm uninstall -g @anthropic-ai/claude-code</code>
+                                <br>
+                                <code>rm -rf ~/.claude*</code>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Startup and Login -->
+                <section id="section2" class="content-section">
+                    <h2>2. 启动与登录</h2>
+                    
+                    <div class="warning-box">
+                        <div class="warning-icon">⚠️</div>
+                        <span>网络问题解决：如果遇到与cc链接的网络问题，请执行 claude --pick-relay 切换线路试下</span>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="code-comment"># 进入项目目录</span>
+                        <br>
+                        <code>cd your-project-folder</code>
+                        <br><br>
+                        <span class="code-comment"># 启动 CC</span>
+                        <br>
+                        <code>claude</code>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="blue-title">浏览器登录并绑定账户</h3>
+                        
+                        <div class="info-box">
+                            <div class="warning-icon">⚠️</div>
+                            <p><strong>注意：</strong>一定要用邀请链接注册的才有购买月卡的1万积分赠送（可以是免费或任意类型的邀请链接）</p>
+                            <p><strong>小猫的邀请链接：</strong><a href="#" class="link">https://gaccode.com/signup?ref=ZF9JIHHD</a></p>
+                            <p>然后复制窗口中的https地址进行绑定</p>
+                        </div>
+
+                        <div class="steps-container">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>注册账户</h4>
+                                    <p>使用邀请链接注册gaccode账户</p>
+                                    <div class="step-image">
+                                        <img src="../images/image1.png" alt="注册页面" class="clickable-image" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>复制绑定地址</h4>
+                                    <p>复制窗口中的绑定地址到浏览器中</p>
+                                    <div class="step-image">
+                                        <img src="../images/image2.png" alt="终端界面" class="clickable-image" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>完成绑定</h4>
+                                    <p>点击授权（或直接通过，或需要将授权码回填客户端）</p>
+                                    <div class="step-image">
+                                        <img src="../images/image3.png" alt="授权页面" class="clickable-image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Purchase Subscription -->
+                <section id="section3" class="content-section">
+                    <h2>3. 购买订阅</h2>
+                    
+                    <div class="purchase-layout">
+                        <!-- Left side: Purchase flow and QR code -->
+                        <div class="purchase-left">
+                            <div class="purchase-flow-box">
+                                <p><strong>一 购买流程：</strong></p>
+                                <p>① 购买兑换码（含体验卡）地址：<a href="https://claude.gpt4u.cc/" class="link">猫小店</a>（账户密码与gaccode不通用）</p>
+                                <p>② 购买后获得兑换码如"M***-*5"</p>
+                                <p>③ 回到<a href="https://gaccode.com/login" class="link">gaccode账户内激活</a></p>
+                            </div>
+                            
+                            <div class="customer-service-box">
+                                <p><strong>📱 需要帮忙的可以联系客服：</strong></p>
+                                <img src="../images/wechat.JPG" alt="客服二维码" class="qr-image clickable-image" />
+                            </div>
+                        </div>
+                        
+                        <!-- Right side: Screenshots -->
+                        <div class="purchase-right">
+                            <div class="screenshot-container">
+                                <img src="../images/image4.png" alt="购买页面截图" class="purchase-screenshot clickable-image" />
+                            </div>
+                            <div class="screenshot-container">
+                                <img src="../images/image5.png" alt="订阅管理界面" class="subscription-dashboard clickable-image" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Credits Explanation -->
+                <section id="section4" class="content-section">
+                    <h2>4. 积分说明</h2>
+                    
+                    <div class="credits-info">
+                        <div class="credits-left">
+                            <h3>月卡订阅会获得</h3>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>初始5400积分</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>邀请首充的10000积分</span>
+                            </div>
+                            
+                            <h3 class="blue-title">同时享受2种免费的补充积分方式</h3>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>每小时100积分补充</span>
+                            </div>
+                            <div class="requirement-item">
+                                <span class="check">✓</span>
+                                <span>每日1次的申请重置（恢复初始的5400积分）机会</span>
+                            </div>
+                            
+                            <div class="info-box">
+                                <div class="warning-icon">💡</div>
+                                <p><strong>积分消耗估算：</strong></p>
+                                <p>4 byte ≈ 1 token; 若一次消耗 50,000 token ≈ 9 积分（合基础 2 分 + 7 分）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="credits-right">
+                            <div class="credits-dashboard">
+                                <img src="../images/image6.png" alt="积分管理界面" class="clickable-image" />
+                            </div>
+                            
+                            <div class="usage-logs">
+                                <img src="../images/image7.png" alt="使用记录" class="clickable-image" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Referral Activities -->
+                <section id="section5" class="content-section">
+                    <h2>5. 推荐活动</h2>
+                    
+                    <div class="referral-info">
+                        <div class="referral-left">
+                            <div class="referral-flow">
+                                <div class="warning-icon">🔗</div>
+                                <p><strong>推荐流程：</strong>分享链接（gaccode首页获取）→ 朋友注册 → 获得奖励</p>
+                                <br>
+                                <div class="warning-icon">ℹ️</div>
+                                <p><strong>注意：</strong>账户间的推荐关系是永久有效的</p>
+                            </div>
+                            
+                            <div class="referral-rewards">
+                                <div class="warning-icon">🎁</div>
+                                <p><strong>奖励系统</strong></p>
+                                <p>首次消费：您和朋友各获得 3x2000 + 4x1000 积分</p>
+                                <p>后续消费：您和朋友各获得 1x2000 积分</p>
+                            </div>
+                            
+                            <div class="info-box">
+                                <div class="warning-icon">💡</div>
+                                <p><strong>提示：</strong>被推荐人多次消费都有奖励，可积累大量积分（如右图）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="referral-right">
+                            <div class="referral-dashboard">
+                                <img src="../images/image8.png" alt="推荐活动界面" class="clickable-image" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 6: Upgrade CC -->
+                <section id="section6" class="content-section">
+                    <h2>6. 升级CC</h2>
+                    
+                    <div class="code-block">
+                        <code>npm install -g https://gaccode.com/claudecode/install --registry=https://registry.npmmirror.com</code>
+                    </div>
+                </section>
+
+                <!-- Section 7: More Resources -->
+                <section id="section7" class="content-section">
+                    <h2>7. 更多资源</h2>
+                    <!--
+                    <div class="resources">
+                        <div class="requirement-item">
+                            <span class="check">✓</span>
+                            <span>推荐关注推特的<a href="#" class="link">宝玉老师</a>、<a href="#" class="link">海拉鲁编程客</a>获得更多CC的实务经验</span>
+                        </div>
+                    -->
+                        <div class="requirement-item">
+                            <span class="check">✓</span>
+                            <span>推荐两篇博文<a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="link">CC: 代理编码的最佳实践</a>，<a href="https://docs.anthropic.com/zh-CN/docs/claude-code/tutorials" class="link">CC进行常见工作流程的分步教程</a></span>
+                        </div>
+                        <div class="requirement-item">
+                            <span class="check">✓</span>
+                            <span><strong>社区服务与支持：</strong>加入小猫AI活跃的用户社区，获取最新资讯、技术支持和使用技巧。</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="cta-section">
+                    <h2>📞 联系客服</h2>
+                    <p class="cta-subtitle">如需购买月卡兑换码或遇到任何问题，请联系我们的专业客服团队</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://gaccode.com/signup?ref=ZF9JIHHD" target="_blank" class="btn-primary">立即注册gaccode账户</a>
+                        <a href="https://claude.gpt4u.cc/" class="btn-secondary">购买月卡兑换码</a>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小猫AI-CC订阅 - Claude Code 智能编程助手</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Homepage specific styles */
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        
+        body.light-mode .hero-subtitle {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+        
+        .hero-btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .hero-btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        .hero-btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        
+        .hero-btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .features-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+        
+        body.light-mode .features-title {
+            color: #000;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+        
+        body.light-mode .feature-card {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        body.light-mode .feature-card h3 {
+            color: #000;
+        }
+        
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        body.light-mode .feature-card p {
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .stats-section {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 4rem auto;
+            max-width: 1000px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h4 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.light-mode .stat-item p {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=40&h=40&fit=crop&crop=face" alt="小猫AI" class="logo-img">
+                <span class="logo-text">小猫AI-CC订阅</span>
+            </div>
+            <nav class="header-nav">
+                <button id="themeToggle" class="theme-toggle" title="切换日夜模式">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="#features" class="nav-link">功能特色</a>
+                <a href="#about" class="nav-link">关于我们</a>
+                <a href="https://wiki.gpt4u.cc/2025/08/10/%e5%b0%8f%e7%8c%ab%e7%a4%be%e5%8c%ba%e4%b8%8e%e6%94%af%e6%8c%81/" class="nav-link">联系我们</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">小猫AI-CC订阅</h1>
+                <p class="hero-subtitle">
+                    🎯 专业的 Claude Code 智能编程助手服务<br>
+                    💰 比官方账户模式省60%以上费用<br>
+                    🚀 让AI编程更简单、更经济、更高效
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="subscription.html" class="hero-btn hero-btn-primary">
+                        📋 查看订阅方案
+                    </a>
+                    <a href="https://claude.gpt4u.cc/" class="hero-btn hero-btn-secondary">
+                        ✨ 立即购买
+                    </a>
+                </div>
+                
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>60%+</h4>
+                            <p>节省费用</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>24/7</h4>
+                            <p>在线服务</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>5400+</h4>
+                            <p>初始积分</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>10000+</h4>
+                            <p>邀请奖励</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features-section">
+                <h2 class="features-title">🌟 为什么选择小猫AI-CC订阅？</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">💰</span>
+                        <h3>超高性价比</h3>
+                        <p>比官方账户模式节省60%以上费用，改版CC+订阅账户让您花更少的钱享受同样优质的AI编程服务。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🚀</span>
+                        <h3>简单易用</h3>
+                        <p>一键安装，快速上手。改版会自动适配路径，解决线路稳定性问题，无需复杂配置即可开始使用。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🎁</span>
+                        <h3>丰富奖励</h3>
+                        <p>月卡订阅获得5400初始积分，邀请注册额外获得10000积分，还有每小时100积分自动补充和每日重置机会。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🔗</span>
+                        <h3>推荐返利</h3>
+                        <p>推荐朋友注册使用，双方都能获得丰厚积分奖励。首次消费3x2000+4x1000积分，后续消费1x2000积分。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🛠️</span>
+                        <h3>专业支持</h3>
+                        <p>提供完整的安装教程、使用指南，遇到问题随时联系客服。加入活跃社区，获取最新资讯和技术支持。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3>稳定可靠</h3>
+                        <p>无需翻墙，网络稳定。支持多种操作系统，兼容性强。自动路径适配，使用更稳定可靠。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="features-section">
+                <h2 class="features-title">🐱 关于小猫AI-CC订阅</h2>
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <div class="feature-card" style="display: inline-block; text-align: left;">
+                        <p style="font-size: 1.2rem; line-height: 1.8;">
+                            小猫AI-CC订阅专注于为开发者提供高性价比的 Claude Code 智能编程服务。我们深知程序员对AI编程工具的需求，致力于让每个开发者都能轻松使用强大的AI编程助手。
+                        </p>
+                        <br>
+                        <p style="font-size: 1.2rem; line-height: 1.8;">
+                            🎯 <strong>我们的使命：</strong>让AI编程更加普及，帮助开发者提升编程效率<br>
+                            💡 <strong>我们的优势：</strong>改版CC技术 + 订阅账户模式 = 超高性价比<br>
+                            🤝 <strong>我们的承诺：</strong>持续优化服务，提供最佳用户体验
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="features-section">
+                <h2 class="features-title">📞 联系我们</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">💬</span>
+                        <h3>在线客服</h3>
+                        <p>遇到问题？联系我们的专业客服团队，我们会及时为您解答疑问和提供技术支持。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">👥</span>
+                        <h3>社区支持</h3>
+                        <p>加入小猫AI活跃的用户社区，与其他开发者交流经验，获取最新资讯和使用技巧。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <h2>🚀 立即开始您的AI编程之旅</h2>
+                <p class="cta-subtitle">现在就体验小猫AI-CC订阅的强大功能，让AI成为您最得力的编程助手！</p>
+                
+                <div class="cta-buttons">
+                    <a href="subscription.html" class="btn-primary">📋 查看订阅方案</a>
+                    <a href="https://claude.gpt4u.cc/" class="btn-secondary">购买月卡兑换码</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
